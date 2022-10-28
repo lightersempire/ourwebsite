@@ -4,6 +4,11 @@ const Member = require('../models/members');
 const {register} = require ('../controllers/members')
 // const path = require ('path')
 
+const {
+    getAllStories,
+    getAstory,
+} = require ('../services/blog')
+
 //@description: serves the static files of the webpage
 // @ route: GET '/'
 router.get('/',(req,res)=>{
@@ -14,6 +19,33 @@ router.get('/',(req,res)=>{
 //@description : to register new members
 // @ route :POST '/'
 router.post('/',register);
+
+//@description : to render the blog page
+// @ route :get '/blog'
+router.get('/blog', async(req, res)=>{
+    try {
+        const stories= await getAllStories()
+        // res.render('blog',{
+        //     stories,
+        //})
+    } catch (error){
+        console.log(error)
+    }
+})
+
+//@description : to render the blog page
+// @ route :get '/blog'
+router.get('/blog/:post', async(req, res)=>{
+    try {
+        const postId = req.params.post
+        const stories= await getAstory(postId);
+        // res.render('blog',{
+        //     stories,
+        //})
+    } catch (error){
+        console.log(error)
+    }
+})
 
 
 
