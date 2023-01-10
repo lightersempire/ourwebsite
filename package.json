@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    // cross-env NODE_ENV=production 
     "start": "node app.js",
     "dev": "cross-env NODE_ENV=development nodemon app.js"
   },
